@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +18,7 @@ public class TrainingApplineTest {
     String baseUrl = "http://training.appline.ru/user/login";
     String login = "Секретарь";
     String password = "testing";
+
     @Before
     public void before(){
         System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
@@ -28,6 +30,7 @@ public class TrainingApplineTest {
         wait = new WebDriverWait(driver, 20, 2000);
         driver.get(baseUrl);
     }
+
     @Test
     public void trainingApplineTest(){
         WebElement loginField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id=\"prependedInput\"]")));
@@ -36,12 +39,17 @@ public class TrainingApplineTest {
         passwordField.sendKeys(password);
         WebElement submitButton = driver.findElement(By.xpath("//*[@name=\"_submit\"]"));
         submitButton.click();
+        WebElement outlaysMenu = wait.until(ExpectedConditions.visibilityOfElementLocated( By.xpath("//span[@class=\"title\" and text()=\"Расходы\"]")));
+        Actions builder = new Actions(driver);
+        builder.moveToElement(outlaysMenu).build().perform();
+
         try{
             Thread.sleep(5000);
         }
         catch(InterruptedException ignored){
         }
     }
+
     @After
     public void after(){
         driver.quit();
