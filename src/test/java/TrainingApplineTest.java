@@ -96,7 +96,7 @@ public class TrainingApplineTest {
         Assert.assertEquals("Поле \"Планируемая дата приезда\" заполнено неверно", arrivalDateExp, driver.findElement(By.xpath("//input[@name=\"crm_business_trip[departureDatePlan]\"]")).getAttribute("value"));
         Assert.assertEquals("Поле \"Планируемая дата возвращения\" заполнено неверно", departureDateExp, driver.findElement(By.xpath("//input[@name=\"crm_business_trip[returnDatePlan]\"]")).getAttribute("value"));
         Assert.assertEquals("Сообщение об ошибке \"Список командируемых сотрудников не может быть пустым\" отсутствует", errorMessage, driver.findElement(By.xpath("//span[@class=\"validation-failed\"]")).getText());
-        //test
+
     }
 
       @After
