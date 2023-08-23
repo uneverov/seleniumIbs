@@ -1,7 +1,7 @@
 package ru.appline.core.managers;
 
 import org.apache.commons.exec.OS;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -121,8 +121,8 @@ public class DriverManager {
     /**
      * Метод инициализирующий веб драйвер под любую ОС
      *
-     * @param gecko - переменная firefox из файла application.properties в классе {@link ru.appline.framework.utils.PropConst}
-     * @param chrome - переменная chrome из файла application.properties в классе {@link ru.appline.framework.utils.PropConst}
+     * @param gecko - переменная firefox из файла application.properties в классе {@link ru.appline.core.utils.PropConst}
+     * @param chrome - переменная chrome из файла application.properties в классе {@link ru.appline.core.utils.PropConst}
      */
     private void initDriverAnyOsFamily(String gecko, String chrome) {
         switch (props.getProperty(TYPE_BROWSER)) {
@@ -135,7 +135,7 @@ public class DriverManager {
                 driver = new ChromeDriver();
                 break;
             default:
-                Assert.fail("Типа браузера '" + props.getProperty(TYPE_BROWSER) + "' не существует во фреймворке");
+                Assertions.fail("Типа браузера '" + props.getProperty(TYPE_BROWSER) + "' не существует во фреймворке");
         }
     }
 

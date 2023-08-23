@@ -1,8 +1,9 @@
 package ru.appline.core.basetestsclass;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import ru.appline.core.managers.DriverManager;
 import ru.appline.core.managers.InitManager;
 import ru.appline.core.managers.PageManager;
@@ -25,18 +26,18 @@ public class BaseTests {
      */
     private final DriverManager driverManager = DriverManager.getDriverManager();
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeAll() {
         InitManager.initFramework();
     }
 
-    @Before
+    @BeforeEach
     public void beforeEach() {
         driverManager.getDriver().get(TestPropManager.getTestPropManager().getProperty(BASE_URL));
     }
 
-//    @AfterClass
-//    public static void afterAll() {
-//        InitManager.quitFramework();
-//    }
+    @AfterAll
+    public static void afterAll() {
+        InitManager.quitFramework();
+    }
 }

@@ -1,7 +1,8 @@
 package ru.appline.core.tests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import ru.appline.core.basetestsclass.BaseTests;
+import ru.appline.core.data.FiledCreateBusinessTrip;
 
 public class FirstTest extends BaseTests {
 
@@ -22,12 +23,12 @@ public class FirstTest extends BaseTests {
                 .addDepartureDate("14.06.2023")
                 .addArrivalDate("21.06.2023")
                 .saveAndCloseBusinessTrip()
-                .assertTextField("Подразделение", "Отдел внутренней разработки")
-                .assertTextField("Принимающая организация", "1234test")
-                .assertTextField("Город выбытия", "Россия, Хабаровск")
-                .assertTextField("Город прибытия", "Россия, Москва")
-                .assertTextField("Планируемая дата выезда", "2023-06-14")
-                .assertTextField("Планируемая дата возвращения", "2023-06-21")
+                .assertTextField(FiledCreateBusinessTrip.BUSINESSUNIT, "Отдел внутренней разработки")
+                .assertTextField(FiledCreateBusinessTrip.COMPANYNAME, "1234test")
+                .assertTextField(FiledCreateBusinessTrip.DEPARTURECITY, "Россия, Хабаровск")
+                .assertTextField(FiledCreateBusinessTrip.ARRIVALCITY, "Россия, Москва")
+                .assertTextField(FiledCreateBusinessTrip.DEPARTUREDATE, "2023-06-14")
+                .assertTextField(FiledCreateBusinessTrip.ARRIVALDATE, "2023-06-21")
                 .assertCheckBoxIsSelected()
                 .assertErrorMessage("Список командируемых сотрудников не может быть пустым");
     }

@@ -1,11 +1,12 @@
 package ru.appline.core.pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import ru.appline.core.data.FiledCreateBusinessTrip;
 
 import java.util.Objects;
 
@@ -74,8 +75,8 @@ public class CreateBusinessTripPage extends BasePage {
      * Проверка открытия страницы, путём проверки title страницы
      */
     public CreateBusinessTripPage checkCreateBusinessTripPage() {
-        Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
-                "Создать командировку", title.getText());
+        Assertions.assertEquals("Создать командировку", title.getText(),
+                "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
 
@@ -157,37 +158,37 @@ public class CreateBusinessTripPage extends BasePage {
      * @param nameField - веб-элемент поле ввода
      * @param expValue - значение вводимое в поле
      */
-    public CreateBusinessTripPage assertTextField(String nameField, String expValue) {
+    public CreateBusinessTripPage assertTextField(FiledCreateBusinessTrip nameField, String expValue) {
         WebElement element = null;
         String attr = "";
         switch (nameField) {
-            case "Подразделение":
+            case BUSINESSUNIT:
                 Select dropdown = new Select(businessUnitDropDownMenu);
                 element = dropdown.getFirstSelectedOption();
                 attr = "Text";
                 break;
-            case "Принимающая организация":
+            case COMPANYNAME:
                 element = companyNameField;
                 attr = "Value";
                 break;
-            case "Город выбытия":
+            case DEPARTURECITY:
                 element = departureCityField;
                 attr = "Value";
                 break;
-            case "Город прибытия":
+            case ARRIVALCITY:
                 element = arrivalCityField;
                 attr = "Value";
                 break;
-            case "Планируемая дата выезда":
+            case DEPARTUREDATE:
                 element = departureDate;
                 attr = "Value";
                 break;
-            case "Планируемая дата возвращения":
+            case ARRIVALDATE:
                 element = arrivalDate;
                 attr = "Value";
                 break;
             default:
-                Assert.fail("Поле с наименованием '" + nameField + "' отсутствует на странице " +
+                Assertions.fail("Поле с наименованием '" + nameField + "' отсутствует на странице " +
                         "'Создания командировки'");
         }
         String value = "";
@@ -196,17 +197,17 @@ public class CreateBusinessTripPage extends BasePage {
         } else {
             value = element.getAttribute("Value");
         }
-        Assert.assertEquals("Поле " + nameField + " заполнено неверно", value, expValue);
+        Assertions.assertEquals(expValue, value, "Поле " + nameField + " заполнено неверно");
         return this;
     }
     public CreateBusinessTripPage assertCheckBoxIsSelected() {
-        Assert.assertTrue("Чекбокс 'Заказ билетов' не активен", ticketsOrdercheckBox.isSelected());
+        Assertions.assertTrue(ticketsOrdercheckBox.isSelected(), "Чекбокс 'Заказ билетов' не активен");
         return this;
     }
 
     public CreateBusinessTripPage assertErrorMessage(String errorMessage) {
-        Assert.assertEquals("Сообщение об ошибке " + errorMessage + " отсутствует", errorMessage,
-                validationError.getText());
+        Assertions.assertEquals(errorMessage, validationError.getText(),
+                "Сообщение об ошибке " + errorMessage + " отсутствует");
         return this;
     }
 }
