@@ -1,0 +1,38 @@
+package ru.appline.core.pages;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+/**
+ * @author Neverov Evgeny
+ * Класс описывающий страницу Командировки
+ */
+public class BusinessTripPage extends BasePage {
+
+    @FindBy(xpath = "//h1[@class='oro-subtitle']")
+    private WebElement title;
+
+    @FindBy(xpath = "//a[@title='Создать командировку']")
+    private WebElement createBusinessTripBtn;
+
+    @FindBy(xpath = "//div[@class='loader-mask']")
+    private WebElement loader;
+
+    /**
+     * Проверка открытия страницы, путём проверки title страницы
+     */
+    public BusinessTripPage checkOpenBusinessTripPage() {
+        Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
+                "Все Командировки", title.getText());
+        return this;
+    }
+
+    public CreateBusinessTripPage selectCreateBusinessTrip() {
+        waitUtilElementToBeClickable(createBusinessTripBtn).click();
+        wait.until(ExpectedConditions.invisibilityOf(loader));
+        return pageManager.getCreateBusinessTripPage().checkCreateBusinessTripPage();
+    }
+
+}
