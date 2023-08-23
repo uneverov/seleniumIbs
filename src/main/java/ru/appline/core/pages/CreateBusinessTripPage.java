@@ -1,6 +1,6 @@
 package ru.appline.core.pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -75,8 +75,8 @@ public class CreateBusinessTripPage extends BasePage {
      * Проверка открытия страницы, путём проверки title страницы
      */
     public CreateBusinessTripPage checkCreateBusinessTripPage() {
-        Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
-                "Создать командировку", title.getText());
+        Assertions.assertEquals("Создать командировку", title.getText(),
+                "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
 
@@ -188,7 +188,7 @@ public class CreateBusinessTripPage extends BasePage {
                 attr = "Value";
                 break;
             default:
-                Assert.fail("Поле с наименованием '" + nameField + "' отсутствует на странице " +
+                Assertions.fail("Поле с наименованием '" + nameField + "' отсутствует на странице " +
                         "'Создания командировки'");
         }
         String value = "";
@@ -197,17 +197,17 @@ public class CreateBusinessTripPage extends BasePage {
         } else {
             value = element.getAttribute("Value");
         }
-        Assert.assertEquals("Поле " + nameField + " заполнено неверно", value, expValue);
+        Assertions.assertEquals(expValue, value, "Поле " + nameField + " заполнено неверно");
         return this;
     }
     public CreateBusinessTripPage assertCheckBoxIsSelected() {
-        Assert.assertTrue("Чекбокс 'Заказ билетов' не активен", ticketsOrdercheckBox.isSelected());
+        Assertions.assertTrue(ticketsOrdercheckBox.isSelected(), "Чекбокс 'Заказ билетов' не активен");
         return this;
     }
 
     public CreateBusinessTripPage assertErrorMessage(String errorMessage) {
-        Assert.assertEquals("Сообщение об ошибке " + errorMessage + " отсутствует", errorMessage,
-                validationError.getText());
+        Assertions.assertEquals(errorMessage, validationError.getText(),
+                "Сообщение об ошибке " + errorMessage + " отсутствует");
         return this;
     }
 }

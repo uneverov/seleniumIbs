@@ -1,6 +1,6 @@
 package ru.appline.core.tests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import ru.appline.core.basetestsclass.BaseTests;
 import ru.appline.core.data.FiledCreateBusinessTrip;
 

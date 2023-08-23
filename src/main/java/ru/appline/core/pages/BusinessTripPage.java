@@ -1,6 +1,6 @@
 package ru.appline.core.pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,8 +24,8 @@ public class BusinessTripPage extends BasePage {
      * Проверка открытия страницы, путём проверки title страницы
      */
     public BusinessTripPage checkOpenBusinessTripPage() {
-        Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
-                "Все Командировки", title.getText());
+        Assertions.assertEquals("Все Командировки", title.getText(),
+                "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
 
@@ -34,5 +34,4 @@ public class BusinessTripPage extends BasePage {
         wait.until(ExpectedConditions.invisibilityOf(loader));
         return pageManager.getCreateBusinessTripPage().checkCreateBusinessTripPage();
     }
-
 }

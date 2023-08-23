@@ -1,6 +1,6 @@
 package ru.appline.core.pages;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,8 +31,8 @@ public class HomePage extends BasePage {
      * @return InsurancePage - т.е. остаемся на этой странице
      */
     public HomePage checkOpenHomePage() {
-        Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
-                "Панель быстрого запуска", title.getText());
+        Assertions.assertEquals("Панель быстрого запуска", title.getText(),
+                "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
 
@@ -43,7 +43,7 @@ public class HomePage extends BasePage {
                 return this;
             }
         }
-        Assert.fail("Меню '" + nameMenu + "' не было найдено на домашней странице!");
+        Assertions.fail("Меню '" + nameMenu + "' не было найдено на домашней странице!");
         return this;
     }
 
@@ -55,7 +55,7 @@ public class HomePage extends BasePage {
                 return pageManager.getBusinessTripPage().checkOpenBusinessTripPage();
             }
         }
-        Assert.fail("Подменю '" + nameSubMenu + "' не было найдено на домашней странице!");
+        Assertions.fail("Подменю '" + nameSubMenu + "' не было найдено на домашней странице!");
         return pageManager.getBusinessTripPage();
     }
 
