@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import ru.appline.core.data.FiledCreateBusinessTrip;
 
 import java.util.Objects;
 
@@ -157,32 +158,32 @@ public class CreateBusinessTripPage extends BasePage {
      * @param nameField - веб-элемент поле ввода
      * @param expValue - значение вводимое в поле
      */
-    public CreateBusinessTripPage assertTextField(String nameField, String expValue) {
+    public CreateBusinessTripPage assertTextField(FiledCreateBusinessTrip nameField, String expValue) {
         WebElement element = null;
         String attr = "";
         switch (nameField) {
-            case "Подразделение":
+            case BUSINESSUNIT:
                 Select dropdown = new Select(businessUnitDropDownMenu);
                 element = dropdown.getFirstSelectedOption();
                 attr = "Text";
                 break;
-            case "Принимающая организация":
+            case COMPANYNAME:
                 element = companyNameField;
                 attr = "Value";
                 break;
-            case "Город выбытия":
+            case DEPARTURECITY:
                 element = departureCityField;
                 attr = "Value";
                 break;
-            case "Город прибытия":
+            case ARRIVALCITY:
                 element = arrivalCityField;
                 attr = "Value";
                 break;
-            case "Планируемая дата выезда":
+            case DEPARTUREDATE:
                 element = departureDate;
                 attr = "Value";
                 break;
-            case "Планируемая дата возвращения":
+            case ARRIVALDATE:
                 element = arrivalDate;
                 attr = "Value";
                 break;
