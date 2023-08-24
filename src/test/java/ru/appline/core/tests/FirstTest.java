@@ -15,7 +15,7 @@ public class FirstTest extends BaseTests {
                 .selectMenu("Расходы")
                 .selectSubMenu("Командировки")
                 .selectCreateBusinessTrip()
-                .selectBusinessUnit()
+                .selectBusinessUnit("Отдел внутренней разработки")
                 .selectCompany("1234test")
                 .selectTask()
                 .addDepartureCity("Россия, Хабаровск")

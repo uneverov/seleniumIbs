@@ -1,5 +1,6 @@
 package ru.appline.core.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -73,7 +74,9 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Проверка открытия страницы, путём проверки title страницы
+     * @return CreateBusinessTripPage - т.е. остаемся на этой странице
      */
+    @Step("Проверка открытия страницы 'Создания командировки'")
     public CreateBusinessTripPage checkCreateBusinessTripPage() {
         Assertions.assertEquals("Создать командировку", title.getText(),
                 "Заголовок отсутствует/не соответствует требуемому");
@@ -82,16 +85,20 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Выбор подразделения
+     * @param businessUnitName - название подразделения
      */
-    public CreateBusinessTripPage selectBusinessUnit() {
+    @Step("Выбор подразделения '{businessUnitName}'")
+    public CreateBusinessTripPage selectBusinessUnit(String businessUnitName) {
         Select dropdown = new Select(businessUnitDropDownMenu);
-        dropdown.selectByVisibleText("Отдел внутренней разработки");
+        dropdown.selectByVisibleText(businessUnitName);
         return this;
     }
 
     /**
      * Выбор компании
+     * @param companyName - имя компании
      */
+    @Step("Выбор компании '{companyName}'")
     public CreateBusinessTripPage selectCompany(String companyName) {
         waitUtilElementToBeClickable(companySelector).click();
         waitUtilElementToBeClickable(companySelectorDropdownMenu).click();
@@ -104,6 +111,7 @@ public class CreateBusinessTripPage extends BasePage {
     /**
      * Выбор задачи
      */
+    @Step("Клип по чекбоксу 'Задачи'")
     public CreateBusinessTripPage selectTask() {
         waitUtilElementToBeClickable(ticketsOrdercheckBox).click();
         return this;
@@ -111,7 +119,9 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Заполнить поле города выбытия
+     * @param departureCity - города выбытия
      */
+    @Step("Заполнить поле города выбытия - '{departureCity}'")
     public CreateBusinessTripPage addDepartureCity(String departureCity) {
         fillInputField(departureCityField, departureCity);
         return this;
@@ -119,7 +129,9 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Заполнить поле города прибытия
+     * @param arrivalCity - город прибытия
      */
+    @Step("Заполнить поле города прибытия - '{arrivalCity}'")
     public CreateBusinessTripPage addArrivalCity(String arrivalCity) {
         fillInputField(arrivalCityField, arrivalCity);
         return this;
@@ -127,7 +139,9 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Заполнить поле Планируемая дата выезда
+     * @param departureDate - дата выезда
      */
+    @Step("Заполнить поле Планируемая дата выезда - '{departureDate}'")
     public CreateBusinessTripPage addDepartureDate(String departureDate) {
         fillInputField(departureDatePlan, departureDate);
         activeDate.click();
@@ -136,7 +150,9 @@ public class CreateBusinessTripPage extends BasePage {
 
     /**
      * Заполнить поле Планируемая дата приезда
+     * @param arrivalDate - дата прибытия
      */
+    @Step("Заполнить поле Планируемая дата приезда - '{arrivalDate}'")
     public CreateBusinessTripPage addArrivalDate(String arrivalDate) {
         fillInputField(arrivalDatePlan, arrivalDate);
         activeDate.click();
@@ -146,6 +162,7 @@ public class CreateBusinessTripPage extends BasePage {
     /**
      * Нажать на кнопку "Сохранит и закрыть"
      */
+    @Step("Нажать на кнопку 'Сохранит и закрыть'")
     public CreateBusinessTripPage saveAndCloseBusinessTrip() {
         saveAndCloseButton.click();
         wait.until(ExpectedConditions.invisibilityOf(loader));
@@ -153,11 +170,12 @@ public class CreateBusinessTripPage extends BasePage {
     }
 
     /**
-     * Общий метод по заполнения полей ввода
+     * Проверка заполненных значений
      *
      * @param nameField - веб-элемент поле ввода
      * @param expValue - значение вводимое в поле
      */
+    @Step("Проверка заполненных значений")
     public CreateBusinessTripPage assertTextField(FiledCreateBusinessTrip nameField, String expValue) {
         WebElement element = null;
         String attr = "";
@@ -200,11 +218,19 @@ public class CreateBusinessTripPage extends BasePage {
         Assertions.assertEquals(expValue, value, "Поле " + nameField + " заполнено неверно");
         return this;
     }
+    /**
+     * Проверка выбранного чек-бокса
+     */
+    @Step("Проверка выбранного чек-бокса")
     public CreateBusinessTripPage assertCheckBoxIsSelected() {
         Assertions.assertTrue(ticketsOrdercheckBox.isSelected(), "Чекбокс 'Заказ билетов' не активен");
         return this;
     }
-
+    /**
+     * Проверка сообщения об ошибке
+     * @param errorMessage - Ожидаемое сообщение об ошибке
+     */
+    @Step("Проверка сообщения об ошибке")
     public CreateBusinessTripPage assertErrorMessage(String errorMessage) {
         Assertions.assertEquals(errorMessage, validationError.getText(),
                 "Сообщение об ошибке " + errorMessage + " отсутствует");

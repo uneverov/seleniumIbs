@@ -1,5 +1,6 @@
 package ru.appline.core.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,14 +29,19 @@ public class HomePage extends BasePage {
     /**
      * Проверка открытия страницы, путём проверки title страницы
      *
-     * @return InsurancePage - т.е. остаемся на этой странице
+     * @return HomePage - т.е. остаемся на этой странице
      */
+    @Step("Проверка открытия страницы 'Домашняя'")
     public HomePage checkOpenHomePage() {
         Assertions.assertEquals("Панель быстрого запуска", title.getText(),
                 "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
-
+    /**
+     * Выбор меню
+     * @param nameMenu - название меню
+     */
+    @Step("Выбор меню '{nameMenu}'")
     public HomePage selectMenu(String nameMenu) {
         for (WebElement menuItem : listMenu) {
             if (menuItem.getText().equalsIgnoreCase(nameMenu)) {
@@ -46,7 +52,11 @@ public class HomePage extends BasePage {
         Assertions.fail("Меню '" + nameMenu + "' не было найдено на домашней странице!");
         return this;
     }
-
+    /**
+     * Выбор подменю
+     * @param nameSubMenu - название подменю
+     */
+    @Step("Выбор подменю '{nameSubMenu}'")
     public BusinessTripPage selectSubMenu(String nameSubMenu) {
         for (WebElement subMenuItem : listSubMenu) {
             if (subMenuItem.getAttribute("textContent").equalsIgnoreCase(nameSubMenu)) {
