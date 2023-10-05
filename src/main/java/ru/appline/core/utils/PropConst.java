@@ -30,6 +30,4 @@ public class PropConst {
 
     public static final String PASSWORD = "credentials.password";
 
-
-
 }

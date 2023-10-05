@@ -31,7 +31,6 @@ public class HomePage extends BasePage {
      *
      * @return HomePage - т.е. остаемся на этой странице
      */
-    @Step("Проверка открытия страницы 'Домашняя'")
     public HomePage checkOpenHomePage() {
         Assertions.assertEquals("Панель быстрого запуска", title.getText(),
                 "Заголовок отсутствует/не соответствует требуемому");
@@ -41,7 +40,6 @@ public class HomePage extends BasePage {
      * Выбор меню
      * @param nameMenu - название меню
      */
-    @Step("Выбор меню '{nameMenu}'")
     public HomePage selectMenu(String nameMenu) {
         for (WebElement menuItem : listMenu) {
             if (menuItem.getText().equalsIgnoreCase(nameMenu)) {
@@ -56,7 +54,6 @@ public class HomePage extends BasePage {
      * Выбор подменю
      * @param nameSubMenu - название подменю
      */
-    @Step("Выбор подменю '{nameSubMenu}'")
     public BusinessTripPage selectSubMenu(String nameSubMenu) {
         for (WebElement subMenuItem : listSubMenu) {
             if (subMenuItem.getAttribute("textContent").equalsIgnoreCase(nameSubMenu)) {
