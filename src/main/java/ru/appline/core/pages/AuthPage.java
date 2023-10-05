@@ -1,6 +1,5 @@
 package ru.appline.core.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.appline.core.managers.TestPropManager;
