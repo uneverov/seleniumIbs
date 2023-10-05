@@ -9,6 +9,8 @@ import ru.appline.core.managers.DriverManager;
 import ru.appline.core.managers.PageManager;
 import ru.appline.core.managers.TestPropManager;
 
+import java.time.Duration;
+
 
 /**
  * @author Neverov Evgeny
@@ -44,7 +46,8 @@ public class BasePage {
      *
      * @see WebDriverWait
      */
-    protected WebDriverWait wait = new WebDriverWait(driverManager.getDriver(), 10, 1000);
+    protected WebDriverWait wait = new WebDriverWait(driverManager.getDriver(),
+            Duration.ofMillis(20), Duration.ofMillis(2000));
 
     /**
      * Менеджер properties
@@ -60,7 +63,6 @@ public class BasePage {
      *
      * @see FindBy
      * @see PageFactory
-     * @see PageFactory#initElements(WebDriver, Object)
      */
     public BasePage() {
         PageFactory.initElements(driverManager.getDriver(), this);

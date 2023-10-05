@@ -34,7 +34,6 @@ public class AuthPage extends BasePage {
      *
      * @return AuthPage - т.е. остаемся на этой странице
      */
-    @Step("Заполнения поля логина")
     public AuthPage fillLoginFiled() {
         fillInputField(loginFiled, props.getProperty(LOGIN));
         return this;
@@ -44,7 +43,6 @@ public class AuthPage extends BasePage {
      *
      * @return AuthPage - т.е. остаемся на этой странице
      */
-    @Step("Заполнения поля пароля")
     public AuthPage fillPasswordFiled() {
         fillInputField(passwordFiled, props.getProperty(PASSWORD));
         return this;
@@ -55,7 +53,6 @@ public class AuthPage extends BasePage {
      *
      * @return AuthPage - т.е. остаемся на этой странице
      */
-    @Step("Нажать на кнопку 'Войти'")
     public HomePage clickSubmitButton() {
         waitUtilElementToBeClickable(submitButton).click();
         return pageManager.getHomePage().checkOpenHomePage();

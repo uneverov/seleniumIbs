@@ -1,6 +1,5 @@
 package ru.appline.core.pages;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,13 +24,11 @@ public class BusinessTripPage extends BasePage {
      * Проверка открытия страницы, путём проверки title страницы
      * @return BusinessTripPage - т.е. остаемся на этой странице
      */
-    @Step("Проверка открытия страницы 'Командировки'")
     public BusinessTripPage checkOpenBusinessTripPage() {
         Assertions.assertEquals("Все Командировки", title.getText(),
                 "Заголовок отсутствует/не соответствует требуемому");
         return this;
     }
-    @Step("Клип по кнопке 'Создать командировку'")
     public CreateBusinessTripPage selectCreateBusinessTrip() {
         waitUtilElementToBeClickable(createBusinessTripBtn).click();
         wait.until(ExpectedConditions.invisibilityOf(loader));
