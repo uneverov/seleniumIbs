@@ -1,15 +1,16 @@
 package ru.appline.core;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.*;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = {"src/test/resources"},
-        glue = {"ru/appline/core/steps"},
-        tags = "@firstTest",
-        strict = true
-)
+import static io.cucumber.junit.platform.engine.Constants.*;
+
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("features")
+@ConfigurationParameters({
+        @ConfigurationParameter(key = FEATURES_PROPERTY_NAME, value = "src/test/resources"),
+        @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "ru.appline.core.steps"),
+        @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "summary, pretty, io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"),
+})
 
 public class RunnerTest {}

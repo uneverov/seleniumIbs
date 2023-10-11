@@ -11,8 +11,8 @@ public class Hooks {
         InitManager.initFramework();
     }
 
-//    @After
-//    public void after() {
-//        InitManager.quitFramework();
-//    }
+    @After
+    public void after() {
+        InitManager.quitFramework();
+    }
 }
